@@ -11,7 +11,7 @@ export const verifyToken =async (req, res, next)=>{
         return res.status(404).json("your are not authenticated !");
     };
 
-    jwt.verify(token, process.env.SECRET, (err, user) => {
+    jwt.verify(token, `${process.env.SECRET}`, (err, user) => {
         if (err) {
                 return res.status(422).json("token is not valid ");
         }
