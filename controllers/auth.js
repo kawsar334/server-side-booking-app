@@ -36,7 +36,7 @@ export const login = async(req, res, next)=>{
             return res.status(404).json("invalid credintials !");
             }else{
                 const {password, ...others} = user._doc;  
-                const token = jwt.sign({id:user._id, user:user, isAdmin:user.isAdmin},process.env.SECRET,);
+                const token = jwt.sign({id:user._id, user:user, isAdmin:user.isAdmin},`${process.env.SECRET}`,);
                 res.cookie("acces_token", token,{httpOnly:true}).status(200).json({token, others, isAdmin:others.isAdmin}); 
             }; 
         } 
